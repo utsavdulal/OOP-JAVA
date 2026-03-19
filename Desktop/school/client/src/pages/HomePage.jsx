@@ -197,18 +197,29 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {programs.map((prog, i) => (
-              <div key={i} className="card p-8 group hover:-translate-y-2 transition-all duration-300 border border-primary-100 bg-white" style={{ animationDelay: `${i * 100}ms` }}>
-                <div className="w-16 h-16 rounded-2xl bg-primary-50 flex items-center justify-center mb-8 group-hover:bg-primary-500 transition-colors duration-300 border border-primary-100">
-                  <prog.icon className="text-3xl text-primary-500 group-hover:text-accent-500 transition-colors" />
+              <div key={i} className="card overflow-hidden group hover:-translate-y-2 transition-all duration-300 border border-primary-100 bg-white" style={{ animationDelay: `${i * 100}ms` }}>
+                {/* Image Container */}
+                <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-50 border-b border-primary-100 flex items-center justify-center overflow-hidden relative group-hover:shadow-lg transition-shadow">
+                  <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity bg-pattern-dots" />
+                  <div className="text-center relative z-10">
+                    <div className="text-6xl text-primary-300 mb-3">📚</div>
+                    <p className="text-sm text-primary-400 font-medium">Program Image</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between mb-4">
-                   <h3 className="text-2xl font-bold text-primary-600 font-display tracking-tight">{prog.title}</h3>
-                   <span className="text-xs font-bold text-accent-600 bg-accent-500/10 px-3 py-1 rounded-full">{prog.duration}</span>
+
+                <div className="p-8">
+                  <div className="w-16 h-16 rounded-2xl bg-primary-50 flex items-center justify-center mb-8 group-hover:bg-primary-500 transition-colors duration-300 border border-primary-100">
+                    <prog.icon className="text-3xl text-primary-500 group-hover:text-accent-500 transition-colors" />
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                     <h3 className="text-2xl font-bold text-primary-600 font-display tracking-tight">{prog.title}</h3>
+                     <span className="text-xs font-bold text-accent-600 bg-accent-500/10 px-3 py-1 rounded-full">{prog.duration}</span>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed font-light mb-6">{prog.desc}</p>
+                  <Link to="/programs" className="inline-flex items-center text-sm font-semibold text-primary-500 group-hover:text-accent-600 transition-colors">
+                    Learn more <FaArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed font-light mb-6">{prog.desc}</p>
-                <Link to="/programs" className="inline-flex items-center text-sm font-semibold text-primary-500 group-hover:text-accent-600 transition-colors">
-                  Learn more <FaArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
               </div>
             ))}
           </div>
