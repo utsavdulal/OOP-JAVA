@@ -125,16 +125,16 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* College Image Section */}
             <div className="relative order-2 lg:order-1">
-              <div className="bg-gradient-to-br from-primary-100 to-primary-50 rounded-[2rem] p-8 relative overflow-hidden border border-primary-100 shadow-lg h-80 flex items-center justify-center">
+              <div className="bg-gradient-to-br from-primary-100 to-primary-50 rounded-[2rem] p-12 relative overflow-hidden border border-primary-100 shadow-lg h-screen max-h-96 lg:max-h-full flex items-center justify-center">
                 {/* Subtle background pattern */}
                 <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle, #666 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                 
                 <div className="text-center relative z-10">
-                  <div className="text-8xl mb-4">🏫</div>
-                  <p className="text-primary-600 font-semibold text-lg">College Image</p>
+                  <div className="text-9xl lg:text-10xl mb-6">🏫</div>
+                  <p className="text-primary-600 font-semibold text-xl lg:text-2xl">College Image</p>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-accent-500/30 rounded-[2rem] -z-10" />
+              <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-accent-500/30 rounded-[2rem] -z-10" />
             </div>
 
             {/* About Text and Why Choose Section */}
