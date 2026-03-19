@@ -76,15 +76,39 @@ const StudentDashboard = () => {
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
-      <div className="bg-[#059669] text-white p-8 rounded-2xl shadow-lg relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-xl"></div>
+      <div className="bg-white rounded-2xl shadow-sm border border-[#a7f3d0] overflow-hidden">
+        <div className="bg-gradient-to-r from-[#059669] to-[#047857] h-32"></div>
         
-        <div className="relative z-10">
-          <h1 className="text-3xl font-black mb-2 tracking-tight">Welcome, {student?.fullName}</h1>
-          <div className="flex items-center gap-3 mt-4">
-            <span className="bg-[#047857] px-4 py-1.5 rounded-full text-sm outline drop-shadow outline-1 outline-[#a7f3d0]/30 font-semibold tracking-wide">Class {student?.class} '{student?.section}'</span>
-            <span className="opacity-80 font-mono text-sm px-2">Roll No: {student?.rollNumber}</span>
+        <div className="px-8 pb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6 -mt-16 mb-6">
+            {/* Student Photo */}
+            <div className="relative">
+              {student?.photo ? (
+                <img
+                  src={student.photo}
+                  alt={student?.fullName}
+                  className="w-32 h-32 rounded-xl object-cover border-4 border-white shadow-lg"
+                />
+              ) : (
+                <div className="w-32 h-32 rounded-xl bg-gradient-to-br from-[#059669] to-[#047857] flex items-center justify-center text-white text-5xl font-bold border-4 border-white shadow-lg">
+                  {student?.fullName?.[0]}
+                </div>
+              )}
+            </div>
+            
+            {/* Student Info */}
+            <div className="flex-1">
+              <h2 className="text-3xl font-black text-[#064e3b] tracking-tight">{student?.fullName}</h2>
+              <p className="text-[#059669] font-bold text-lg mt-1">{student?.rollNumber}</p>
+              <div className="flex items-center gap-2 mt-3">
+                <span className="bg-[#ecfdf5] px-3 py-1 rounded-lg text-sm font-bold text-[#059669] border border-[#a7f3d0]">
+                  {student?.class} {student?.section}
+                </span>
+                {student?.email && (
+                  <span className="text-[#047857] text-sm opacity-75">{student.email}</span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

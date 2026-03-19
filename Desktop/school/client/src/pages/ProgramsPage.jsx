@@ -184,75 +184,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* Student Life Carousel */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 text-[#c9a84c] font-bold text-sm uppercase tracking-widest mb-4">
-               <span className="w-8 h-0.5 bg-[#c9a84c] rounded-full"></span>
-               Our Students
-               <span className="w-8 h-0.5 bg-[#c9a84c] rounded-full"></span>
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a4a2e] font-display tracking-tight">Student Life at Kasturi College</h2>
-          </div>
 
-          {/* Carousel Container */}
-          <div className="relative">
-            {/* Left Arrow */}
-            <button
-              onClick={() => scrollCarousel('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#1a4a2e] hover:bg-[#143d25] text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 -ml-4"
-              aria-label="Scroll left"
-            >
-              <FaChevronLeft className="text-lg" />
-            </button>
-
-            {/* Right Arrow */}
-            <button
-              onClick={() => scrollCarousel('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#1a4a2e] hover:bg-[#143d25] text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 -mr-4"
-              aria-label="Scroll right"
-            >
-              <FaChevronRight className="text-lg" />
-            </button>
-
-            {/* Scrollable Container */}
-            <div
-              ref={carouselRef}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-8"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {studentPhotos.map((photo) => (
-                <div
-                  key={photo.id}
-                  className="flex-shrink-0 w-[280px] h-[200px] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-              ))}
-              {/* Duplicate photos for seamless looping */}
-              {studentPhotos.map((photo) => (
-                <div
-                  key={`dup-${photo.id}`}
-                  className="flex-shrink-0 w-[280px] h-[200px] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

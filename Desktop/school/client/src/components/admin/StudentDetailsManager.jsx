@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FiEdit2, FiTrash2, FiChevronDown, FiChevronUp, FiUser } from 'react-icons/fi';
+import PhotoUploadInput from '../PhotoUploadInput';
 
 const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStudent }) => {
   const [students, setStudents] = useState([]);
@@ -28,6 +29,7 @@ const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStud
     status: 'active',
     gpa: '',
     notes: '',
+    photo: null,
   });
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -126,6 +128,7 @@ const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStud
       status: 'active',
       gpa: '',
       notes: '',
+      photo: null,
     });
   };
 
@@ -148,6 +151,7 @@ const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStud
       status: student.status || 'active',
       gpa: student.gpa || '',
       notes: student.notes || '',
+      photo: student.photo || null,
     });
     setEditingId(student._id);
     setShowForm(true);
@@ -328,6 +332,14 @@ const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStud
               <textarea name="notes" value={formData.notes} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600" placeholder="Additional notes..." rows="3" />
             </div>
 
+            <div>
+              <PhotoUploadInput
+                value={formData.photo}
+                onChange={(photo) => setFormData(prev => ({ ...prev, photo }))}
+                label="Student Photo"
+              />
+            </div>
+
             <button type="submit" disabled={loading} className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50">
               {loading ? 'Saving...' : editingId ? 'Update' : 'Add'} Student
             </button>
@@ -358,11 +370,26 @@ const StudentDetailsManager = ({ onViewProfile, editingStudent, clearEditingStud
                   onClick={() => setExpandedId(expandedId === student._id ? null : student._id)}
                   className="w-full p-4 flex justify-between items-center hover:bg-gray-50 transition"
                 >
-                  <div className="text-left">
-                    <h4 className="font-semibold text-gray-800">
-                      {student.rollNumber} - {student.firstName} {student.lastName}
-                    </h4>
-                    <p className="text-sm text-gray-600">{student.email}</p>
+                  <div className="text-left flex items-center gap-4">
+                    <div className="relative w-12 h-12 flex-shrink-0">
+                      {student.photo ? (
+                        <img
+                          src={student.photo}
+                          alt={`${student.firstName} ${student.lastName}`}
+                          className="w-full h-full rounded-full object-cover border-2 border-blue-200"
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                          {student.firstName?.[0]}{student.lastName?.[0]}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800">
+                        {student.rollNumber} - {student.firstName} {student.lastName}
+                      </h4>
+                      <p className="text-sm text-gray-600">{student.email}</p>
+                    </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <span className={`px-3 py-1 text-xs rounded-full ${student.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>

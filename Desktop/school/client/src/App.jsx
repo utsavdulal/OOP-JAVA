@@ -9,6 +9,7 @@ import ProgramsPage from './pages/ProgramsPage';
 import FacultyPage from './pages/FacultyPage';
 import AdmissionsPage from './pages/AdmissionsPage';
 import GalleryPage from './pages/GalleryPage';
+import StudentsPage from './pages/StudentsPage';
 import ContactPage from './pages/ContactPage';
 import NoticeBoardPage from './pages/NoticeBoardPage';
 import AdminLoginPage from './pages/AdminLoginPage';
@@ -33,6 +34,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/programs" element={<ProgramsPage />} />
             <Route path="/faculty" element={<FacultyPage />} />
+            <Route path="/students" element={<StudentsPage />} />
             <Route path="/admissions" element={<AdmissionsPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
