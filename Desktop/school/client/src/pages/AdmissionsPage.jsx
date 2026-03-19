@@ -18,12 +18,6 @@ const eligibility = [
   { program: 'BBS', requirements: ['Passed +2 or equivalent from recognized board', 'Minimum requirements as per TU norms', 'TU entrance exam qualification'] },
 ];
 
-const feeStructure = [
-  { program: '+2 Management', admission: 'Rs. 15,000', monthly: 'Rs. 3,500', exam: 'As per NEB' },
-  { program: 'BBA', admission: 'Rs. 25,000', semester: 'Rs. 22,000', exam: 'As per TU' },
-  { program: 'BBS', admission: 'Rs. 18,000', yearly: 'Rs. 18,000', exam: 'As per TU' },
-];
-
 const faqs = [
   { q: 'When does the admission process start?', a: 'Admissions typically open after the SEE results for +2, and after +2 results for bachelor programs. Check our notice board for exact dates.' },
   { q: 'Is there a scholarship program?', a: 'Yes, we offer merit-based scholarships to top-performing students. Financial assistance is also available for deserving candidates.' },
@@ -185,49 +179,6 @@ export default function AdmissionsPage() {
                   ))}
                 </div>
              </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Fee Structure */}
-      <section className="section-padding bg-surface-bg border-y border-primary-50">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 text-primary-400 font-bold text-sm uppercase tracking-widest mb-4">
-               <span className="w-8 h-0.5 bg-primary-300 rounded-full"></span>
-               Investment in Your Future
-               <span className="w-8 h-0.5 bg-primary-300 rounded-full"></span>
-            </span>
-            <h2 className="section-title text-primary-600">Fee Structure</h2>
-            <p className="section-subtitle">Affordable quality education for all students.</p>
-          </div>
-          <div className="max-w-5xl mx-auto overflow-x-auto shadow-sm rounded-[2rem] border border-primary-100 bg-white">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="bg-primary-50 border-b border-primary-100">
-                  <th className="px-8 py-5 text-sm font-bold text-primary-600 font-display uppercase tracking-widest">Program</th>
-                  <th className="px-8 py-5 text-sm font-bold text-primary-600 font-display uppercase tracking-widest">Admission Fee</th>
-                  <th className="px-8 py-5 text-sm font-bold text-primary-600 font-display uppercase tracking-widest">Tuition Fee</th>
-                  <th className="px-8 py-5 text-sm font-bold text-primary-600 font-display uppercase tracking-widest">Exam Fee</th>
-                </tr>
-              </thead>
-              <tbody>
-                {feeStructure.map((f, i) => (
-                  <tr key={i} className="border-b border-primary-50 hover:bg-surface-bg transition-colors">
-                    <td className="px-8 py-6 font-bold text-primary-600 text-base font-display">{f.program}</td>
-                    <td className="px-8 py-6 text-text-primary text-sm font-light">{f.admission}</td>
-                    <td className="px-8 py-6 text-text-primary text-sm font-light">
-                        <span className="font-medium">{f.monthly || f.semester || f.yearly}</span>
-                        <span className="text-xs text-text-secondary ml-1">{f.monthly ? '/month' : f.semester ? '/semester' : '/year'}</span>
-                    </td>
-                    <td className="px-8 py-6 text-text-primary text-sm font-light">{f.exam}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="p-4 bg-primary-50/50 border-t border-primary-100 text-center">
-                 <p className="text-xs text-text-secondary font-medium tracking-wide uppercase">* Fee structure is approximate and subject to change. Contact the college for exact figures.</p>
-            </div>
           </div>
         </div>
       </section>
