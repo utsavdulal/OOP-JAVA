@@ -7,6 +7,7 @@ import NoticeManager from '../components/admin/NoticeManager';
 import MessagesViewer from '../components/admin/MessagesViewer';
 import TeacherProfile from '../components/admin/TeacherProfile';
 import ProgramImageManager from '../components/admin/ProgramImageManager';
+import ScheduleVisitsManager from '../components/admin/ScheduleVisitsManager';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const AdminDashboard = () => {
 
   const menuItems = [
     { id: 'dashboard', label: '📊 Dashboard', icon: '📊' },
+    { id: 'visits', label: '🏫 Campus Visits', icon: '🏫' },
     { id: 'programs', label: '📚 Program Images', icon: '📚' },
     { id: 'gallery', label: '🖼️ Gallery', icon: '🖼️' },
     { id: 'notices', label: '📋 Notices', icon: '📋' },
@@ -119,6 +121,18 @@ const AdminDashboard = () => {
               <h1 className="text-3xl font-bold text-gray-800">Welcome to Admin Dashboard</h1>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                  <div className="text-3xl mb-2">🏫</div>
+                  <h3 className="font-semibold text-gray-800">Campus Visits</h3>
+                  <p className="text-gray-600 text-sm mt-2">Manage visit requests</p>
+                  <button
+                    onClick={() => handleSectionChange('visits')}
+                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                  >
+                    Go to Visits
+                  </button>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
                   <div className="text-3xl mb-2">📚</div>
                   <h3 className="font-semibold text-gray-800">Program Images</h3>
                   <p className="text-gray-600 text-sm mt-2">Upload program photos</p>
@@ -181,73 +195,7 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {activeSection === 'dashboard' && (
-            <div className="space-y-6">
-              <h1 className="text-3xl font-bold text-gray-800">Welcome to Admin Dashboard</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                  <div className="text-3xl mb-2">📚</div>
-                  <h3 className="font-semibold text-gray-800">Program Images</h3>
-                  <p className="text-gray-600 text-sm mt-2">Upload program photos</p>
-                  <button
-                    onClick={() => handleSectionChange('programs')}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                  >
-                    Go to Programs
-                  </button>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                  <div className="text-3xl mb-2">🖼️</div>
-                  <h3 className="font-semibold text-gray-800">Manage Gallery</h3>
-                  <p className="text-gray-600 text-sm mt-2">Upload and manage photos</p>
-                  <button
-                    onClick={() => handleSectionChange('gallery')}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                  >
-                    Go to Gallery
-                  </button>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                  <div className="text-3xl mb-2">📋</div>
-                  <h3 className="font-semibold text-gray-800">Post Notices</h3>
-                  <p className="text-gray-600 text-sm mt-2">Send official notices</p>
-                  <button
-                    onClick={() => handleSectionChange('notices')}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                  >
-                    Go to Notices
-                  </button>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                  <div className="text-3xl mb-2">💬</div>
-                  <h3 className="font-semibold text-gray-800">View Messages</h3>
-                  <p className="text-gray-600 text-sm mt-2">See student & parent messages</p>
-                  <button
-                    onClick={() => handleSectionChange('messages')}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                  >
-                    Go to Messages
-                  </button>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                  <div className="text-3xl mb-2">👤</div>
-                  <h3 className="font-semibold text-gray-800">My Profile</h3>
-                  <p className="text-gray-600 text-sm mt-2">Update your information</p>
-                  <button
-                    onClick={() => handleSectionChange('profile')}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                  >
-                    Go to Profile
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
+          {activeSection === 'visits' && <ScheduleVisitsManager />}
           {activeSection === 'programs' && <ProgramImageManager />}
           {activeSection === 'gallery' && <GalleryManager />}
           {activeSection === 'notices' && <NoticeManager />}

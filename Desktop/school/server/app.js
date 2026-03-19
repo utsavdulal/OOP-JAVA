@@ -14,6 +14,7 @@ const messagesRoutes = require('./routes/messagesRoutes');
 const resultRoutes = require('./routes/resultRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const feeRoutes = require('./routes/feeRoutes');
+const scheduleVisitRoutes = require('./routes/scheduleVisitRoutes');
 
 const app = express();
 
@@ -120,6 +121,7 @@ app.use('/api/results', newResultRoutes);
 app.use('/api/attendance', newAttendanceRoutes);
 app.use('/api/fees', newFeeRoutes);
 app.use('/api/student', studentAuthRoutes);
+app.use('/api', scheduleVisitRoutes);
 
 
 // 404 handler
