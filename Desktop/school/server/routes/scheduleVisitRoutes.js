@@ -1,6 +1,7 @@
 const express = require('express');
 const ScheduleVisit = require('../models/ScheduleVisit');
 const { verifyAdminToken } = require('../middleware/authMiddleware');
+const { sendEmail, emailTemplates } = require('../utils/emailService');
 
 const router = express.Router();
 
@@ -35,6 +36,18 @@ router.post('/schedule-visit', async (req, res) => {
     });
 
     await scheduleVisit.save();
+
+    // Send confirmation email
+    const emailContent = emailTemplates.scheduleVisitConfirmation({
+      fullName,
+      program,
+      visitDate,
+      timeSlot,
+      phone,
+    });
+
+    await sendEmail(email, 'Campus Visit Request Received - Kasturi College', emailContent);
+
     res.status(201).json({
       message: 'Your visit has been scheduled successfully! We will contact you soon.',
       visit: scheduleVisit,
@@ -97,6 +110,25 @@ router.put('/schedule-visits/:id/status', verifyAdminToken, async (req, res) => 
 
     if (!visit) {
       return res.status(404).json({ message: 'Schedule visit not found' });
+    }
+
+    // Send status update emails
+    let subject = '';
+    let emailContent = '';
+
+    if (status === 'confirmed') {
+      subject = 'Campus Visit Confirmed - Kasturi College';
+      emailContent = emailTemplates.visitConfirmed(visit, adminNotes);
+    } else if (status === 'cancelled') {
+      subject = 'Campus Visit Cancelled - Kasturi College';
+      emailContent = emailTemplates.visitCancelled(visit, adminNotes);
+    } else if (status === 'completed') {
+      subject = 'Thank You for Visiting Kasturi College';
+      emailContent = emailTemplates.visitCompleted(visit);
+    }
+
+    if (emailContent) {
+      await sendEmail(visit.email, subject, emailContent);
     }
 
     res.json({ message: 'Status updated successfully', visit });

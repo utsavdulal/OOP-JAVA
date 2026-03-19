@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { FaFileAlt, FaCalendarAlt, FaCheckCircle, FaQuestionCircle, FaChevronDown, FaChevronUp, FaArrowRight } from 'react-icons/fa';
 import { useState } from 'react';
+import ScheduleVisitForm from '../components/ScheduleVisitForm';
 
 const steps = [
   { step: '01', title: 'Collect Prospectus', desc: 'Visit the college or download the prospectus from our website to learn about programs and fees.' },
@@ -128,9 +129,27 @@ export default function AdmissionsPage() {
             ))}
           </div>
         </div>
-      </section>
+       </section>
 
-      {/* Important Dates */}
+       {/* Schedule Visit Section */}
+       <section className="section-padding bg-white relative">
+         <div className="absolute right-0 top-0 w-1/4 h-full bg-surface-bg rounded-l-[100px] -z-10 opacity-50 hidden md:block" />
+         <div className="container-custom mx-auto">
+           <div className="text-center mb-16">
+             <span className="inline-flex items-center gap-2 text-primary-400 font-bold text-sm uppercase tracking-widest mb-4">
+                <span className="w-8 h-0.5 bg-primary-300 rounded-full"></span>
+                Book Your Visit
+                <span className="w-8 h-0.5 bg-primary-300 rounded-full"></span>
+             </span>
+             <h2 className="section-title text-primary-600">Want to Visit Our Campus?</h2>
+             <p className="section-subtitle">Schedule a campus visit and meet our faculty. Our admissions team will contact you to confirm your preferred date and time.</p>
+           </div>
+           
+           <ScheduleVisitForm />
+         </div>
+       </section>
+
+       {/* Important Dates */}
       <section className="section-padding bg-primary-600 relative overflow-hidden text-white">
         <div className="absolute inset-0 pattern-academic opacity-20" />
         <div className="absolute -left-20 top-0 w-64 h-64 bg-primary-500 rounded-full blur-3xl opacity-50 mix-blend-screen" />
