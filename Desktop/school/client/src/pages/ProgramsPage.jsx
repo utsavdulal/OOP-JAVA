@@ -14,6 +14,7 @@ const programs = [
     description: 'Build a strong foundation in commerce, accounting, economics, and business studies. This program prepares students for higher education in management and business fields.',
     subjects: ['Accountancy', 'Business Studies', 'Economics', 'English', 'Nepali', 'Mathematics / Hotel Management'],
     highlights: ['NEB affiliated curriculum', 'Experienced faculty', 'Regular mock exams', 'Career counselling'],
+    image: null,
   },
   {
     id: 'bba',
@@ -25,6 +26,7 @@ const programs = [
     description: 'A comprehensive undergraduate program designed to develop management, leadership, and entrepreneurial skills. BBA prepares you for careers in the corporate world and business ownership.',
     subjects: ['Financial Management', 'Marketing Management', 'Human Resource Management', 'Organizational Behavior', 'Business Law', 'Strategic Management'],
     highlights: ['Semester-based system', 'Industry internships', 'Project-based learning', 'Guest lectures from industry experts'],
+    image: null,
   },
   {
     id: 'bbs',
@@ -36,6 +38,7 @@ const programs = [
     description: 'An in-depth academic program focusing on business, finance, and economics. BBS provides strong theoretical knowledge combined with practical business applications.',
     subjects: ['Business Finance', 'Macro/Micro Economics', 'Business Statistics', 'Cost & Management Accounting', 'Auditing', 'Taxation'],
     highlights: ['TU affiliated', 'Strong theoretical foundation', 'Exam-focused preparation', 'Library & research resources'],
+    image: null,
   },
 ];
 
@@ -54,6 +57,19 @@ const studentPhotos = [
 export default function ProgramsPage() {
   const carouselRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [programsData, setProgramsData] = useState(programs);
+
+  // Load program images from localStorage on mount
+  useEffect(() => {
+    const savedImages = localStorage.getItem('programImages');
+    if (savedImages) {
+      const imageMap = JSON.parse(savedImages);
+      setProgramsData(programs.map(prog => ({
+        ...prog,
+        image: imageMap[prog.id] || null,
+      })));
+    }
+  }, []);
 
   // Auto-scroll effect
   useEffect(() => {
@@ -121,7 +137,7 @@ export default function ProgramsPage() {
         <div className="absolute top-0 right-0 w-1/3 h-full bg-white rounded-l-[100px] -z-10 opacity-50 hidden lg:block" />
 
         <div className="container-custom mx-auto space-y-16">
-          {programs.map((prog, i) => (
+          {programsData.map((prog, i) => (
             <div key={prog.id} id={prog.id} className={`grid lg:grid-cols-5 gap-8 lg:gap-12 items-start ${i % 2 === 1 ? 'lg:direction-rtl' : ''}`}>
               {/* Info */}
               <div className={`lg:col-span-3 card p-8 sm:p-10 border border-primary-50 hover:border-primary-200 transition-colors shadow-sm hover:shadow-md bg-white ${i % 2 === 1 ? 'lg:order-last' : ''}`}>
@@ -159,8 +175,25 @@ export default function ProgramsPage() {
                 </div>
               </div>
 
-              {/* Highlights Card */}
-              <div className="lg:col-span-2">
+              {/* Image and Highlights */}
+              <div className="lg:col-span-2 space-y-4">
+                {/* Program Image */}
+                <div className="relative bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed border-primary-300 h-56 flex items-center justify-center shadow-sm hover:border-primary-500 transition-colors group">
+                  {prog.image ? (
+                    <img
+                      src={prog.image}
+                      alt={prog.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <div className="text-4xl mb-2 opacity-30">📚</div>
+                      <p className="text-sm text-gray-400 font-medium">Program image placeholder</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Highlights Card */}
                 <div className="bg-primary-600 rounded-[2rem] p-8 sm:p-10 text-white shadow-xl relative overflow-hidden border border-primary-500">
                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-500 rounded-full blur-2xl opacity-50" />
 
