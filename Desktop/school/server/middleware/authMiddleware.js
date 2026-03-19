@@ -33,4 +33,8 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
+// Alias for backward compatibility
+const verifyAdminToken = authMiddleware;
+
 module.exports = authMiddleware;
+module.exports.verifyAdminToken = verifyAdminToken;
