@@ -123,7 +123,22 @@ export default function HomePage() {
       <section ref={aboutRef} className="section-padding bg-surface-bg">
         <div className={`container-custom mx-auto transition-all duration-700 ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="pr-4 lg:pr-10">
+            {/* College Image Section */}
+            <div className="relative order-2 lg:order-1">
+              <div className="bg-gradient-to-br from-primary-100 to-primary-50 rounded-[2rem] p-8 relative overflow-hidden border border-primary-100 shadow-lg h-80 flex items-center justify-center">
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle, #666 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                
+                <div className="text-center relative z-10">
+                  <div className="text-8xl mb-4">🏫</div>
+                  <p className="text-primary-600 font-semibold text-lg">College Image</p>
+                </div>
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-accent-500/30 rounded-[2rem] -z-10" />
+            </div>
+
+            {/* About Text and Why Choose Section */}
+            <div className="order-1 lg:order-2">
               <span className="inline-flex items-center gap-2 text-accent-600 font-bold text-sm uppercase tracking-widest mb-4">
                 <span className="w-8 h-0.5 bg-accent-500 rounded-full"></span>
                 About Us
@@ -140,10 +155,13 @@ export default function HomePage() {
               </p>
               <Link to="/about" className="btn-outline group text-sm !px-6 !py-3">
                 Learn More <FaChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
+               </Link>
             </div>
+          </div>
 
-            <div className="relative">
+          {/* Why Choose Us Section Below */}
+          <div className="mt-16">
+            <div className="relative max-w-2xl mx-auto">
               <div className="bg-primary-500 rounded-[2rem] p-10 text-white shadow-2xl relative z-10 overflow-hidden border border-primary-400">
                 {/* Decorative background circle */}
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary-400 rounded-full opacity-50 blur-3xl mix-blend-screen" />
