@@ -182,4 +182,4 @@ By completing this workshop, you will understand:
 
 **Last Updated:** April 2026
 **Institution:** Biratnagar International College
-**Course:** 4CS021 - Introduction to Object-Oriented Programming
+**Course:** 4CS021 - Introduction to Object-Oriented Programming.
